@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 class Moeda {
   String nome;
   String sigla;

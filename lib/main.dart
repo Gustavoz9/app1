@@ -35,7 +35,7 @@ class MyAppState extends State<MyApp> {
       home: Scaffold(
         body: PageView(
           controller: pageViewController,
-          children: [
+          children: const [
             MyHome(),
             MyCarteira(),
             MyMoviment(),
@@ -45,7 +45,7 @@ class MyAppState extends State<MyApp> {
             animation: pageViewController,
             builder: (context, snapshot) {
               return BottomNavigationBar(
-                  currentIndex: pageViewController?.page?.round() ?? 0,
+                  currentIndex: pageViewController.page?.round() ?? 0,
                   onTap: (index) {
                     pageViewController.jumpToPage(index);
                   },

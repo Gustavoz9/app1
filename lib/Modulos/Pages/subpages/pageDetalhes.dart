@@ -1,4 +1,5 @@
 import 'package:app1/Modulos/Pages/home.dart';
+import 'package:app1/Modulos/Pages/subpages/pageConversao.dart';
 import 'package:app1/models/modelChart.dart';
 import 'package:app1/widgets/chart.dart';
 import 'package:app1/widgets/stack.dart';
@@ -6,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class SubpageDetalhes extends StatefulWidget {
+class SubPageDetalhes extends StatefulWidget {
   final String title;
   final String nome;
   final double preco;
@@ -15,7 +16,7 @@ class SubpageDetalhes extends StatefulWidget {
   final String valorMaximo;
   final List<ChartsModel> chartsModel;
 
-  const SubpageDetalhes({
+  const SubPageDetalhes({
     Key? key,
     required this.chartsModel,
     required this.title,
@@ -27,7 +28,7 @@ class SubpageDetalhes extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<SubpageDetalhes> createState() => _SubpageDetalhesState();
+  State<SubPageDetalhes> createState() => _SubPageDetalhesState();
 }
 
 class LinearSales {
@@ -37,13 +38,18 @@ class LinearSales {
   LinearSales(this.year, this.sales);
 }
 
-class _SubpageDetalhesState extends State<SubpageDetalhes> {
-  bool buttonDayOnTap = true;
+class _SubPageDetalhesState extends State<SubPageDetalhes> {
+  num onTapSwitchButton = 0;
+  bool onTapSwitchChart = false;
 
-  onTap() {
+  onTapChangeButton(int state) {
     setState(() {
-      buttonDayOnTap = !buttonDayOnTap;
+      onTapSwitchButton = state;
     });
+  }
+
+  void _onTapChangeChart(bool state) {
+    setState(() => onTapSwitchChart = state);
   }
 
   @override
@@ -84,24 +90,26 @@ class _SubpageDetalhesState extends State<SubpageDetalhes> {
                 width: 323,
                 height: 245,
                 alignment: Alignment.center,
-                color: Color.fromARGB(71, 179, 179, 179),
                 child: Column(
                   children: [
                     ChartAPP(
                       data: widget.chartsModel,
                       porcento: widget.porcento,
-                      state: onTap,
-                      buttonDayOnTap: buttonDayOnTap,
+                      valor: widget.preco,
+                      stateChart: _onTapChangeChart,
+                      stateButton: onTapChangeButton,
+                      onTapSwitchButton: onTapSwitchButton.toInt(),
+                      onTapSwitchChart: onTapSwitchChart,
                     ),
                   ],
                 )),
           ),
           Padding(
-            padding: EdgeInsets.fromLTRB(25, 15, 0, 0),
+            padding: EdgeInsets.fromLTRB(25, 5, 0, 0),
             child: Container(
               width: 350,
               height: 20,
-              child: Text('informaçãoes',
+              child: Text('informações',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 20,
@@ -109,7 +117,7 @@ class _SubpageDetalhesState extends State<SubpageDetalhes> {
             ),
           ),
           Divider(
-            height: 20,
+            height: 10,
             thickness: 1,
             indent: 20,
             endIndent: 20,
@@ -127,15 +135,11 @@ class _SubpageDetalhesState extends State<SubpageDetalhes> {
             ),
             subTexto: 'Valor atual',
           ),
+          SizedBox(height: 10),
           StackAPP(
             texto: 'Cap de Mercado',
-            complemento: Padding(
-              padding: EdgeInsets.fromLTRB(
-                180,
-                15,
-                0,
-                0,
-              ),
+            complemento: Align(
+              alignment: Alignment.centerRight,
               child: Container(
                 width: 45,
                 height: 20,
@@ -160,28 +164,60 @@ class _SubpageDetalhesState extends State<SubpageDetalhes> {
               ),
             ),
           ),
+          SizedBox(height: 10),
           StackAPP(
             texto: 'valor mínimo',
             complemento: Padding(
               padding: EdgeInsets.fromLTRB(160, 15, 0, 0),
               child: Text(' R\$ ' + widget.valorMinimo,
-                  textAlign: TextAlign.right,
+                  textAlign: TextAlign.end,
                   style: TextStyle(
                     fontSize: 20,
                   )),
             ),
           ),
+          SizedBox(height: 10),
           StackAPP(
             texto: 'valor máximo',
             complemento: Padding(
               padding: EdgeInsets.fromLTRB(165, 15, 0, 0),
               child: Text('R\$ ' + widget.valorMaximo,
-                  textAlign: TextAlign.right,
+                  textAlign: TextAlign.end,
                   style: TextStyle(
                     fontSize: 20,
                   )),
             ),
           ),
+          Spacer(),
+          Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: 250,
+                height: 50,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(5)),
+                  border: Border.all(width: 1, color: Colors.redAccent),
+                  color: Colors.redAccent,
+                ),
+                child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  SubPageConversao()));
+                    },
+                    child: Align(
+                      child: Text(
+                        'Converter Moeda',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    )),
+              )),
+          SizedBox(
+            height: 30,
+          )
         ],
       ),
     ));

@@ -23,7 +23,7 @@ class _StackAPPState extends State<StackAPP> {
       width: double.infinity,
       height: 50,
       child: Container(
-          color: Color.fromARGB(75, 167, 147, 76),
+          color: Color.fromARGB(0, 167, 147, 76),
           width: double.infinity,
           height: 50,
           child: Stack(children: [
@@ -45,7 +45,7 @@ class _StackAPPState extends State<StackAPP> {
                             child: Text(
                               widget.subTexto.toString(),
                               style: TextStyle(
-                                color: Color.fromARGB(132, 0, 0, 0),
+                                color: Color.fromARGB(132, 45, 0, 0),
                                 fontSize: 10,
                               ),
                             ),
@@ -59,8 +59,9 @@ class _StackAPPState extends State<StackAPP> {
                           ),
                   ],
                 )),
-            Padding(
-              padding: EdgeInsets.fromLTRB(100, 0, 0, 0),
+            Container(
+              width: double.infinity,
+              padding: EdgeInsets.fromLTRB(0, 0, 15, 0),
               child: widget.complemento,
             ),
           ])),

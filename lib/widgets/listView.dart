@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:app1/Modulos/Pages/home.dart';
 import 'package:app1/models/modelView.dart';
 import 'package:flutter/material.dart';
@@ -39,7 +37,7 @@ class _ListViewAPPState extends State<ListViewAPP> {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => SubpageDetalhes(
+                    builder: (context) => SubPageDetalhes(
                           nome: widget.listOn[moeda].nome,
                           porcento: widget.listOn[moeda].porcento,
                           preco: widget.listOn[moeda].preco,
