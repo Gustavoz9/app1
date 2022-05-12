@@ -1,10 +1,8 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 
-class ChartsModel {
-  int year;
-  int sales;
-  charts.Color barColor;
-
-  ChartsModel(
-      {required this.year, required this.sales, required this.barColor});
+class ChartData {
+  ChartData(this.dias, this.preco, this.barColor);
+  final double dias; // X
+  final double preco; // Y
+  final charts.Color barColor;
 }

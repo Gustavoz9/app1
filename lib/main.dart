@@ -5,17 +5,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyMain());
 }
 
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyMain extends StatefulWidget {
+  const MyMain({Key? key}) : super(key: key);
 
   @override
-  State<MyApp> createState() => MyAppState();
+  State<MyMain> createState() => MyMainState();
 }
 
-class MyAppState extends State<MyApp> {
+class MyMainState extends State<MyMain> {
   final pageViewController = PageController();
 
   @override

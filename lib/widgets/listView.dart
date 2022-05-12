@@ -7,14 +7,10 @@ import '../models/modelChart.dart';
 
 class ListViewAPP extends StatefulWidget {
   final List listOn;
-  final String chartId;
-  final List<ChartsModel> chartData;
 
   const ListViewAPP({
     Key? key,
-    required this.chartData,
     required this.listOn,
-    required this.chartId,
   }) : super(key: key);
 
   @override
@@ -46,7 +42,6 @@ class _ListViewAPPState extends State<ListViewAPP> {
                               widget.listOn[moeda].valorMaximo.toString(),
                           valorMinimo:
                               widget.listOn[moeda].valorMinimo.toString(),
-                          chartsModel: widget.chartData,
                         )));
           },
           leading: CircleAvatar(

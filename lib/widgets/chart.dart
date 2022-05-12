@@ -6,7 +6,7 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class ChartAPP extends StatefulWidget {
-  final List<ChartsModel> data;
+  // final List<
   final double porcento;
   final double valor;
   final Function(int) stateButton;
@@ -16,7 +16,6 @@ class ChartAPP extends StatefulWidget {
 
   const ChartAPP({
     Key? key,
-    required this.data,
     required this.valor,
     required this.porcento,
     required this.stateButton,
@@ -30,6 +29,7 @@ class ChartAPP extends StatefulWidget {
 }
 
 class _ChartAPPState extends State<ChartAPP> {
+  final data = ChartsRepository();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -56,36 +56,56 @@ class _ChartAPPState extends State<ChartAPP> {
                           ? SfCartesianChart(series: <ChartSeries>[
                               // Renders line chart
                               ColumnSeries<ChartData, double>(
-                                  dataSource: ChartDataUp,
+                                  dataSource: data.chartDataUp,
                                   xValueMapper: (ChartData data, _) =>
-                                      data.dias,
+                                      data.dias *
+                                      widget.onTapSwitchButton.toInt(),
                                   yValueMapper: (ChartData data, _) =>
-                                      data.preco),
+                                      data.preco *
+                                      widget.onTapSwitchButton.toInt()),
 
                               ColumnSeries<ChartData, double>(
-                                  dataSource: ChartDataDashUp,
-                                  dashArray: <double>[5, 5],
+                                  dataSource: data.chartDataDashUp,
+                                  dashArray: <double>[
+                                    5 * widget.onTapSwitchButton.toDouble(),
+                                    5 * widget.onTapSwitchButton.toDouble()
+                                  ],
                                   xValueMapper: (ChartData data, _) =>
-                                      data.dias,
+                                      data.dias *
+                                      widget.onTapSwitchButton.toInt(),
                                   yValueMapper: (ChartData data, _) =>
-                                      data.preco),
+                                      data.preco *
+                                      widget.onTapSwitchButton.toInt()),
                             ])
                           : SfCartesianChart(series: <ChartSeries>[
                               // Renders line chart
                               ColumnSeries<ChartData, double>(
-                                  dataSource: ChartDataDown,
+                                  dataSource: data.chartDataDown,
                                   xValueMapper: (ChartData data, _) =>
-                                      data.dias,
+                                      data.dias *
+                                      widget.onTapSwitchButton.toInt(),
                                   yValueMapper: (ChartData data, _) =>
-                                      data.preco),
+                                      data.preco *
+                                      widget.onTapSwitchButton.toInt()),
 
                               ColumnSeries<ChartData, double>(
-                                  dataSource: ChartDataDashDown,
-                                  dashArray: <double>[5, 5],
+                                  dataSource: data.chartDataDashDown,
+                                  dashArray: <double>[
+                                    5 *
+                                        widget.onTapSwitchButton
+                                            .toInt()
+                                            .toDouble(),
+                                    5 *
+                                        widget.onTapSwitchButton
+                                            .toInt()
+                                            .toDouble()
+                                  ],
                                   xValueMapper: (ChartData data, _) =>
-                                      data.dias,
+                                      data.dias *
+                                      widget.onTapSwitchButton.toInt(),
                                   yValueMapper: (ChartData data, _) =>
-                                      data.preco),
+                                      data.preco *
+                                      widget.onTapSwitchButton.toInt()),
                             ]))
                   : Container(
                       width: 300,
@@ -94,36 +114,44 @@ class _ChartAPPState extends State<ChartAPP> {
                           ? SfCartesianChart(series: <ChartSeries>[
                               // Renders line chart
                               LineSeries<ChartData, double>(
-                                  dataSource: ChartDataUp,
+                                  dataSource: data.chartDataUp,
                                   xValueMapper: (ChartData data, _) =>
-                                      data.dias,
+                                      data.dias *
+                                      widget.onTapSwitchButton.toInt(),
                                   yValueMapper: (ChartData data, _) =>
-                                      data.preco),
+                                      data.preco *
+                                      widget.onTapSwitchButton.toInt()),
 
                               LineSeries<ChartData, double>(
-                                  dataSource: ChartDataDashUp,
+                                  dataSource: data.chartDataDashUp,
                                   dashArray: <double>[5, 5],
                                   xValueMapper: (ChartData data, _) =>
-                                      data.dias,
+                                      data.dias *
+                                      widget.onTapSwitchButton.toInt(),
                                   yValueMapper: (ChartData data, _) =>
-                                      data.preco),
+                                      data.preco *
+                                      widget.onTapSwitchButton.toInt()),
                             ])
                           : SfCartesianChart(series: <ChartSeries>[
                               // Renders line chart
                               LineSeries<ChartData, double>(
-                                  dataSource: ChartDataDown,
+                                  dataSource: data.chartDataDown,
                                   xValueMapper: (ChartData data, _) =>
-                                      data.dias,
+                                      data.dias *
+                                      widget.onTapSwitchButton.toInt().toInt(),
                                   yValueMapper: (ChartData data, _) =>
-                                      data.preco),
+                                      data.preco *
+                                      widget.onTapSwitchButton.toInt().toInt()),
 
                               LineSeries<ChartData, double>(
-                                  dataSource: ChartDataDashDown,
+                                  dataSource: data.chartDataDashDown,
                                   dashArray: <double>[5, 5],
                                   xValueMapper: (ChartData data, _) =>
-                                      data.dias,
+                                      data.dias *
+                                      widget.onTapSwitchButton.toInt(),
                                   yValueMapper: (ChartData data, _) =>
-                                      data.preco),
+                                      data.preco *
+                                      widget.onTapSwitchButton.toInt()),
                             ]))),
           Divider(
             height: 1,
@@ -195,91 +223,87 @@ class _ChartAPPState extends State<ChartAPP> {
   }
 }
 
-class ChartData {
-  ChartData(this.dias, this.preco, this.barColor);
-  final double dias; // X
-  final double preco; // Y
-  final charts.Color barColor;
+class ChartsRepository {
+  final List<ChartData> chartDataUp = [
+    ChartData(
+      0,
+      10,
+      charts.ColorUtil.fromDartColor(Colors.amber),
+    ),
+    ChartData(
+      14,
+      45,
+      charts.ColorUtil.fromDartColor(Colors.amber),
+    ),
+    ChartData(
+      17,
+      52,
+      charts.ColorUtil.fromDartColor(Colors.amber),
+    ),
+    ChartData(
+      27,
+      69,
+      charts.ColorUtil.fromDartColor(Colors.amber),
+    ),
+    ChartData(
+      40,
+      70,
+      charts.ColorUtil.fromDartColor(Colors.amber),
+    ),
+  ];
+  final List<ChartData> chartDataDashUp = [
+    ChartData(
+      0,
+      0,
+      charts.ColorUtil.fromDartColor(Colors.amber),
+    ),
+    ChartData(
+      40,
+      40,
+      charts.ColorUtil.fromDartColor(Colors.amber),
+    ),
+  ];
+  final List<ChartData> chartDataDown = [
+    ChartData(
+      0,
+      50,
+      charts.ColorUtil.fromDartColor(Colors.amber),
+    ),
+    ChartData(
+      5,
+      36,
+      charts.ColorUtil.fromDartColor(Colors.amber),
+    ),
+    ChartData(
+      15,
+      32,
+      charts.ColorUtil.fromDartColor(Colors.amber),
+    ),
+    ChartData(
+      25,
+      39,
+      charts.ColorUtil.fromDartColor(Colors.amber),
+    ),
+    ChartData(
+      30,
+      27,
+      charts.ColorUtil.fromDartColor(Colors.amber),
+    ),
+  ];
+  final List<ChartData> chartDataDashDown = [
+    ChartData(
+      0,
+      30,
+      charts.ColorUtil.fromDartColor(Colors.amber),
+    ),
+    ChartData(
+      30,
+      0,
+      charts.ColorUtil.fromDartColor(Colors.amber),
+    ),
+  ];
 }
 
-final List<ChartData> ChartDataUp = [
-  ChartData(
-    0,
-    10,
-    charts.ColorUtil.fromDartColor(Colors.amber),
-  ),
-  ChartData(
-    14,
-    45,
-    charts.ColorUtil.fromDartColor(Colors.amber),
-  ),
-  ChartData(
-    17,
-    52,
-    charts.ColorUtil.fromDartColor(Colors.amber),
-  ),
-  ChartData(
-    27,
-    69,
-    charts.ColorUtil.fromDartColor(Colors.amber),
-  ),
-  ChartData(
-    40,
-    70,
-    charts.ColorUtil.fromDartColor(Colors.amber),
-  ),
-];
-final List<ChartData> ChartDataDashUp = [
-  ChartData(
-    0,
-    0,
-    charts.ColorUtil.fromDartColor(Colors.amber),
-  ),
-  ChartData(
-    40,
-    40,
-    charts.ColorUtil.fromDartColor(Colors.amber),
-  ),
-];
-final List<ChartData> ChartDataDown = [
-  ChartData(
-    0,
-    50,
-    charts.ColorUtil.fromDartColor(Colors.amber),
-  ),
-  ChartData(
-    5,
-    36,
-    charts.ColorUtil.fromDartColor(Colors.amber),
-  ),
-  ChartData(
-    15,
-    32,
-    charts.ColorUtil.fromDartColor(Colors.amber),
-  ),
-  ChartData(
-    25,
-    39,
-    charts.ColorUtil.fromDartColor(Colors.amber),
-  ),
-  ChartData(
-    30,
-    27,
-    charts.ColorUtil.fromDartColor(Colors.amber),
-  ),
-];
-final List<ChartData> ChartDataDashDown = [
-  ChartData(
-    0,
-    30,
-    charts.ColorUtil.fromDartColor(Colors.amber),
-  ),
-  ChartData(
-    30,
-    0,
-    charts.ColorUtil.fromDartColor(Colors.amber),
-  ),
-];
 
 /////////////////////////////////////////////
 ///
