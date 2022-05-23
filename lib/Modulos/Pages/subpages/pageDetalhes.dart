@@ -54,7 +54,10 @@ class _SubPageDetalhesState extends State<SubPageDetalhes> {
   }
 
   Widget buildBottomSheet() {
-    return SubPageConversao();
+    return SubPageConversao(
+      name: widget.nome,
+      valor: widget.preco,
+    );
   }
 
   @override
@@ -220,7 +223,7 @@ class _SubPageDetalhesState extends State<SubPageDetalhes> {
                 child: GestureDetector(
                   child: InkWell(
                       onTap: () => showModalBottomSheet(
-                          enableDrag: false,
+                          enableDrag: true,
                           isScrollControlled: true,
                           context: context,
                           builder: (context) => buildBottomSheet()),

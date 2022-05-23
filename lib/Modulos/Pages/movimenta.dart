@@ -1,5 +1,8 @@
-import 'package:app1/widgets/listView.dart';
+import 'package:app1/repositorio/repositorioMovimenta.dart';
+
 import 'package:flutter/material.dart';
+
+import '../../widgets/listViewWithChart.dart';
 
 class MyMoviment extends StatefulWidget {
   const MyMoviment({Key? key}) : super(key: key);
@@ -9,13 +12,17 @@ class MyMoviment extends StatefulWidget {
 }
 
 class MyMovimentState extends State<MyMoviment> {
-  final pageViewController = PageController();
-
+  List salvos = MovimentaRepository.listaMovimenta;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      child: InkWell(onTap: () {}),
-    ));
+            child: Stack(
+      children: [
+        ListViewWithChart(
+          listOn: salvos,
+        ),
+      ],
+    )));
   }
 }
