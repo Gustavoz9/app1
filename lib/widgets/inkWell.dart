@@ -2,16 +2,22 @@ import 'package:flutter/material.dart';
 
 class InkWellAPP extends StatefulWidget {
   final Function state;
+  final Color colorCase;
+
   final int buttonDayOnTap;
+  final int radiusBorder;
+  final int casePosition;
 
   final String text;
-  final int casePosition;
+
   const InkWellAPP({
     Key? key,
     required this.state,
     required this.text,
     required this.casePosition,
     required this.buttonDayOnTap,
+    required this.radiusBorder,
+    required this.colorCase,
   }) : super(key: key);
 
   @override
@@ -36,9 +42,10 @@ class _InkWellAPPState extends State<InkWellAPP> {
         height: 25,
         decoration: BoxDecoration(
             border: Border.all(color: Color.fromARGB(0, 0, 0, 0), width: 1),
-            borderRadius: BorderRadius.all(Radius.circular(5)),
+            borderRadius: BorderRadius.all(
+                Radius.circular(widget.radiusBorder.toDouble())),
             color: widget.buttonDayOnTap == widget.casePosition
-                ? Color.fromARGB(122, 158, 158, 158)
-                : Color.fromARGB(0, 255, 255, 255)));
+                ? widget.colorCase
+                : null));
   }
 }

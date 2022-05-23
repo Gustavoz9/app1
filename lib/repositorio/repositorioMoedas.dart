@@ -5,7 +5,7 @@ class MoedaRepository {
     Moeda(
       nome: 'Bitcoin',
       sigla: 'BTC',
-      preco: 70000,
+      preco: 7000,
       porcento: 0.50,
       imagem: 'assets/imagens/bitcoin_icon.png',
       valorMaximo: 3,
@@ -23,16 +23,16 @@ class MoedaRepository {
     Moeda(
       nome: 'Litecoin',
       sigla: 'LTC',
-      preco: 23000,
+      preco: 2300,
       porcento: 7.10,
       imagem: 'assets/imagens/litecoin_icon.png',
       valorMaximo: 8,
       valorMinimo: 7.10,
     ),
     Moeda(
-      nome: 'Etherium',
+      nome: 'Ethereum',
       sigla: 'ETC',
-      preco: 50000,
+      preco: 5000,
       porcento: 0.10,
       imagem: 'assets/imagens/eterium.png',
       valorMaximo: 2,

@@ -167,6 +167,8 @@ class _ChartAPPState extends State<ChartAPP> {
                 children: [
                   Spacer(),
                   InkWellAPP(
+                    colorCase: Color.fromARGB(69, 104, 95, 95),
+                    radiusBorder: 5,
                     casePosition: 1,
                     state: () {
                       widget.stateButton(1);
@@ -175,6 +177,8 @@ class _ChartAPPState extends State<ChartAPP> {
                     text: '5D',
                   ),
                   InkWellAPP(
+                    colorCase: Color.fromARGB(69, 104, 95, 95),
+                    radiusBorder: 5,
                     casePosition: 2,
                     state: () {
                       widget.stateButton(2);
@@ -183,6 +187,8 @@ class _ChartAPPState extends State<ChartAPP> {
                     text: '10D',
                   ),
                   InkWellAPP(
+                    colorCase: Color.fromARGB(69, 104, 95, 95),
+                    radiusBorder: 5,
                     casePosition: 3,
                     state: () {
                       widget.stateButton(3);
@@ -191,6 +197,8 @@ class _ChartAPPState extends State<ChartAPP> {
                     text: '15D',
                   ),
                   InkWellAPP(
+                    colorCase: Color.fromARGB(69, 104, 95, 95),
+                    radiusBorder: 5,
                     casePosition: 4,
                     state: () {
                       widget.stateButton(4);

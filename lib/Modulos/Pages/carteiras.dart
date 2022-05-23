@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:localstorage/localstorage.dart';
 
 import '../../repositorio/repositorioMoedas.dart';
 import '../../widgets/listView.dart';
@@ -15,11 +16,26 @@ class MyCarteira extends StatefulWidget {
 }
 
 class MyCarteiraState extends State<MyCarteira> {
+  double valorCarteira = 10000;
+
+  LocalStorage storage = LocalStorage('valor');
   bool show = true;
+
   visibility() {
     setState(() {
       show = !show;
     });
+  }
+
+  @override
+  initState() {
+    super.initState();
+    storage.setItem('valor', 10000);
+  }
+
+  setStateValor(double valor) {
+    storage.setItem('valor', (storage.getItem('valor') - valor).toString());
+    setState(() {});
   }
 
   @override
@@ -64,7 +80,7 @@ class MyCarteiraState extends State<MyCarteira> {
                         top: 45,
                         left: 25,
                         child: show
-                            ? Text('R\$ 1.000,00',
+                            ? Text('R\$ ' + storage.getItem('valor').toString(),
                                 style: TextStyle(
                                   fontSize: 30,
                                 ))
