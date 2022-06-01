@@ -16,13 +16,15 @@ class MyMovimentState extends State<MyMoviment> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-            child: Stack(
-      children: [
-        ListViewWithChart(
-          listOn: salvos,
+      body: Container(
+        child: Stack(
+          children: [
+            ListViewWithChart(
+              listOn: salvos,
+            ),
+          ],
         ),
-      ],
-    )));
+      ),
+    );
   }
 }

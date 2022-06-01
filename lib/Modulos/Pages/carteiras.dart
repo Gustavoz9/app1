@@ -4,6 +4,7 @@ import 'package:localstorage/localstorage.dart';
 import '../../repositorio/repositorioMoedas.dart';
 import '../../widgets/listView.dart';
 import '../../widgets/visibility.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 final pageViewController = PageController();
 final repoMoedas = MoedaRepository.tabela;
@@ -34,8 +35,9 @@ class MyCarteiraState extends State<MyCarteira> {
   }
 
   setStateValor(double valor) {
-    storage.setItem('valor', (storage.getItem('valor') - valor).toString());
-    setState(() {});
+    setState(() {
+      storage.setItem('valor', (storage.getItem('valor') - valor).toString());
+    });
   }
 
   @override
@@ -44,15 +46,15 @@ class MyCarteiraState extends State<MyCarteira> {
         body: Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
-            color: Color.fromARGB(0, 187, 222, 251),
+            color: const Color.fromARGB(0, 187, 222, 251),
             child: Stack(children: [
               Positioned(
                 top: 77,
                 child: Container(
                   width: MediaQuery.of(context).size.width,
                   height: 150,
-                  padding: EdgeInsets.all(2),
-                  color: Color.fromARGB(0, 255, 0, 0),
+                  padding: const EdgeInsets.all(2),
+                  color: const Color.fromARGB(0, 255, 0, 0),
                   alignment: Alignment.topLeft,
                   child: Stack(
                     children: [
@@ -70,9 +72,9 @@ class MyCarteiraState extends State<MyCarteira> {
                           top: 5,
                           left: 25,
                           child: Text(
-                            'Carteira',
+                            AppLocalizations.of(context)!.wallet,
                             textAlign: TextAlign.left,
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 35,
                             ),
                           )),
@@ -80,23 +82,24 @@ class MyCarteiraState extends State<MyCarteira> {
                         top: 45,
                         left: 25,
                         child: show
-                            ? Text('R\$ ' + storage.getItem('valor').toString(),
-                                style: TextStyle(
+                            ? Text("R\$ ${storage.getItem('valor').toString()}",
+                                style: const TextStyle(
                                   fontSize: 30,
                                 ))
                             : Container(
                                 width: 200,
                                 height: 25,
                                 decoration: BoxDecoration(
-                                  color: Color.fromARGB(75, 85, 85, 85),
+                                  color: const Color.fromARGB(75, 85, 85, 85),
                                   border: Border.all(
                                       width: 1,
-                                      color: Color.fromARGB(129, 92, 92, 92)),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(20)),
+                                      color: const Color.fromARGB(
+                                          129, 92, 92, 92)),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(20)),
                                 )),
                       ),
-                      Positioned(
+                      const Positioned(
                           top: 85,
                           left: 25,
                           child: Text('+R\$ 100,00 (100% do CDI)',
@@ -112,7 +115,7 @@ class MyCarteiraState extends State<MyCarteira> {
                     alignment: Alignment.center,
                     width: MediaQuery.of(context).size.width,
                     height: 530,
-                    color: Color.fromARGB(0, 255, 193, 7),
+                    color: const Color.fromARGB(0, 255, 193, 7),
                     child: ListViewAPP(
                       listOn: repoMoedas,
                     ),

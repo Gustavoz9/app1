@@ -1,0 +1,56 @@
+{
+    "wallet": "Wallet",
+    "@wallet": {"description": "current wallet"},
+
+    "moviments": "Moviments",
+    "@moviments":{"description": "Moviments Page"},
+
+
+
+    "ofcdi": "100% of CDI",
+    "@ofcdi":{"description": "current CDI"},
+
+    "coin": "Coin",
+    "@coin":{"description": "current Coin"},
+
+    "information": "Information",
+    "@information":{"description": "current information"},
+
+    "currentvalor": "Current valor",
+    "@currentvalor":{"description": "current valor"},
+
+    "marketcap": "Market cap",
+    "@marketcap":{"description": "current market cap"},
+    
+    "maxvalor": "Max valor",
+    "@maxvalor":{"description": "current max valor"},
+
+    "minvalor": "Min valor",
+    "@minvalor":{"description": "current min valor"},
+
+    "convertcoin": "Convert Coin",
+    "@convertcoin": {"description": "convert coin button"},
+
+    
+
+    "coinconvertion": "Coin convertion",
+    "@coinconvertion":{"description": "coin convertion"},
+
+    "convertfrom": "Convert from",
+    "@convertfrom":{"description": "convert a coin from"},
+
+    "toreceivein": "to receive in",
+    "@toreceivein":{"description": "to receive a coin in"},
+
+    "selectcoin": "select a Coin",
+    "@selectcoin":{"description": "select a coin"},
+
+    "selectquantityvalue": "select quantity value",
+    "@selectquantityvalue":{"description": "select quantity value"},
+
+    "in": "in",
+    "@in":{"description":"in"},
+
+    "cancel": "Cancel",
+    "@cancel":{"description": "cancel convertion"}
+}
