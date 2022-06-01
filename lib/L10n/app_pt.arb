@@ -1,0 +1,28 @@
+{
+    "wallet": "Carteira",
+    "moviments": "Movimentações",
+
+
+    "ofcdi": "100% do CDI",
+    "coin": "Moeda",
+    "information": "Informações",
+    "current valor": "Valor atual",
+    "market cap": "Cap de Mercado",
+    "max valor": "Valor Maximo",
+    "min valor": "Valor Minimo",
+    "convert coin": "Converter Moeda",
+
+
+    "coinconvertion": "Conversão de Moeda",
+    "convertfrom": "Converter de",
+    "toreceivein": "Para receber em",
+    "selectcoin": "Selecione uma Moeda",
+    "selectquantityvalue": "Selecione uma fração",
+    "in": "Em",
+    "cancel": "cancelar"
+
+
+
+
+
+}

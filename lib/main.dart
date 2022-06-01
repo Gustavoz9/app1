@@ -1,8 +1,10 @@
+import 'package:app1/L10n/l10n.dart';
 import 'package:app1/Modulos/Pages/carteiras.dart';
 import 'package:app1/Modulos/Pages/home.dart';
 import 'package:app1/Modulos/Pages/movimenta.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(const MyMain());
@@ -20,7 +22,6 @@ class MyMainState extends State<MyMain> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     pageViewController.dispose();
   }
@@ -28,6 +29,13 @@ class MyMainState extends State<MyMain> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      supportedLocales: L10n.all,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
       theme: ThemeData(
           colorScheme: ColorScheme.fromSwatch(
         primarySwatch: Colors.red,
@@ -50,24 +58,24 @@ class MyMainState extends State<MyMain> {
                     pageViewController.jumpToPage(index);
                   },
                   items: [
-                    BottomNavigationBarItem(
+                    const BottomNavigationBarItem(
                         icon: ImageIcon(
                           AssetImage('assets/imagens/logo.png'),
                           size: 25,
                         ),
                         label: 'Home'),
                     BottomNavigationBarItem(
-                        icon: ImageIcon(
+                        icon: const ImageIcon(
                           AssetImage('assets/imagens/carteiras_icon.png'),
                           size: 25,
                         ),
-                        label: 'Carteiras'),
+                        label: AppLocalizations.of(context)!.wallet),
                     BottomNavigationBarItem(
-                        icon: ImageIcon(
+                        icon: const ImageIcon(
                           AssetImage('assets/imagens/bolsa_icon.png'),
                           size: 25,
                         ),
-                        label: 'Movimentações'),
+                        label: AppLocalizations.of(context)!.moviments),
                   ]);
             }),
       ),
