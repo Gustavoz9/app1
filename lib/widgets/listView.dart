@@ -1,8 +1,8 @@
-import 'package:app1/Modulos/Pages/home.dart';
+import 'package:app1/modulos/pages/home.dart';
 import 'package:app1/models/modelView.dart';
 import 'package:flutter/material.dart';
 
-import '../Modulos/Pages/subpages/pageDetalhes.dart';
+import '../modulos/pages/subpages/pageDetalhes.dart';
 import '../models/modelChart.dart';
 
 class ListViewAPP extends StatefulWidget {

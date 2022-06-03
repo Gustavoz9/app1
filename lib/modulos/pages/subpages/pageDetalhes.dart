@@ -1,4 +1,4 @@
-import 'package:app1/Modulos/Pages/subpages/pageConversao.dart';
+import 'package:app1/modulos/pages/subpages/pageConversao.dart';
 
 import 'package:app1/widgets/chart.dart';
 import 'package:app1/widgets/stack.dart';
