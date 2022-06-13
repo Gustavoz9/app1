@@ -47,9 +47,10 @@ dependencies:
 
   localstorage: ^4.0.0+1
 
-  riverpod: ^1.0.3
+  flutter_riverpod: ^1.0.4
   json_annotation: ^4.5.0
   json_serializable: ^6.2.0
+  dio: ^4.0.6 
 
 
 dev_dependencies:

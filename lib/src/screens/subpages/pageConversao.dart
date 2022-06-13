@@ -1,12 +1,13 @@
-import 'package:app1/models/modelMovimentaList.dart';
-import 'package:app1/widgets/inkWell.dart';
 import 'package:flutter/material.dart';
 
-import '../../../repositorio/repositorioMoedas.dart';
-import '../../../repositorio/repositorioMovimenta.dart';
-import '../../../widgets/dropdownButtonApp.dart';
-import '../carteiras.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../../shared/widgets/dropdownButtonApp.dart';
+import '../../../shared/widgets/inkWell.dart';
+import '../../models/modelMovimentaList.dart';
+import '../../repositorio/repositorioMoedas.dart';
+import '../../repositorio/repositorioMovimenta.dart';
+import '../carteiras.dart';
 
 class SubPageConversao extends StatefulWidget {
   final String name;

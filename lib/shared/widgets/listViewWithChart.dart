@@ -1,9 +1,8 @@
-import 'package:app1/widgets/pieChart.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
 import 'package:flutter/material.dart';
 
-import '../repositorio/repositorioPieChart.dart';
+import '../../src/repositorio/repositorioPieChart.dart';
 
 class ListViewWithChart extends StatefulWidget {
   final List listOn;

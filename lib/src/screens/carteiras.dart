@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 
-import '../../repositorio/repositorioMoedas.dart';
-import '../../widgets/listView.dart';
-import '../../widgets/visibility.dart';
+import '../../shared/widgets/listView.dart';
+import '../../shared/widgets/visibility.dart';
+import '../repositorio/repositorioMoedas.dart';
+
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final pageViewController = PageController();
 final repoMoedas = MoedaRepository.tabela;
 
-class MyCarteira extends StatefulWidget {
+class MyCarteira extends ConsumerStatefulWidget {
   const MyCarteira({Key? key}) : super(key: key);
 
   @override
-  State<MyCarteira> createState() => MyCarteiraState();
+  ConsumerState<MyCarteira> createState() => MyCarteiraState();
 }
 
-class MyCarteiraState extends State<MyCarteira> {
+class MyCarteiraState extends ConsumerState<MyCarteira> {
   double valorCarteira = 10000;
 
   LocalStorage storage = LocalStorage('valor');
@@ -110,16 +113,19 @@ class MyCarteiraState extends State<MyCarteira> {
                 ),
               ),
               Positioned(
-                  top: 230,
-                  child: Container(
-                    alignment: Alignment.center,
-                    width: MediaQuery.of(context).size.width,
-                    height: 530,
-                    color: const Color.fromARGB(0, 255, 193, 7),
-                    child: ListViewAPP(
-                      listOn: repoMoedas,
-                    ),
-                  ))
+                top: 230,
+                child: Container(
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width,
+                  height: 530,
+                  color: const Color.fromARGB(0, 255, 193, 7),
+                  child: ListViewAPP(listOn: repoMoedas),
+                ),
+              )
             ])));
   }
+
+  ErrorScreen() {}
+
+  LoadingScreen() {}
 }

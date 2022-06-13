@@ -1,11 +1,10 @@
-import 'package:app1/modulos/pages/subpages/pageConversao.dart';
-
-import 'package:app1/widgets/chart.dart';
-import 'package:app1/widgets/stack.dart';
-
+import 'package:app1/src/screens/subpages/pageConversao.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../../shared/widgets/chart.dart';
+import '../../../shared/widgets/stack.dart';
 
 class SubPageDetalhes extends StatefulWidget {
   final String title;

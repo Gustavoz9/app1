@@ -1,10 +1,11 @@
-import 'package:app1/L10n/l10n.dart';
-import 'package:app1/modulos/pages/carteiras.dart';
-import 'package:app1/modulos/pages/home.dart';
-import 'package:app1/modulos/pages/movimenta.dart';
+import 'package:app1/src/screens/carteiras.dart';
+import 'package:app1/src/screens/home.dart';
+import 'package:app1/src/screens/movimenta.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'L10n/l10n.dart';
 
 void main() {
   runApp(const MyMain());

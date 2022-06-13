@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'base_crypto_response.dart';
+part of 'models/base_crypto_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator

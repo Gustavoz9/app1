@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import '../models/modelChartPie.dart';
-import '../repositorio/repositorioPieChart.dart';
+import '../../src/models/modelChartPie.dart';
 
 class PieChartApp extends StatefulWidget {
   final List<PieChartModel> data;

@@ -1,9 +1,9 @@
-import 'package:app1/models/modelChart.dart';
-import 'package:app1/widgets/inkWell.dart';
-
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:syncfusion_flutter_charts/charts.dart';
+
+import '../../src/models/modelChart.dart';
+import 'inkWell.dart';
 
 class ChartAPP extends StatefulWidget {
   // final List<

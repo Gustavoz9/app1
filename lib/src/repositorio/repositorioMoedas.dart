@@ -1,4 +1,4 @@
-import 'package:app1/models/modelView.dart';
+import '../models/modelView.dart';
 
 class MoedaRepository {
   static List<Moeda> tabela = [
