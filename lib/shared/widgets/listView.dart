@@ -1,34 +1,26 @@
+import 'dart:ffi';
 
-
+import 'package:app1/src/api/screen_providers/allScreen_providers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../src/api/provinders/data_provinder.dart';
+import '../../src/api/endPoint/endPoint_provider.dart';
 import '../../src/screens/subpages/pageDetalhes.dart';
 
-class ListViewAPP extends ConsumerStatefulWidget {
-  final List listOn;
-
-  const ListViewAPP({
-    Key? key,
-    required this.listOn,
-  }) : super(key: key);
+class ListViewApp extends ConsumerWidget {
+  const ListViewApp({Key? key}) : super(key: key);
 
   @override
-  ConsumerState<ListViewAPP> createState() => _ListViewAPPState();
-}
-
-class _ListViewAPPState extends ConsumerState<ListViewAPP> {
-  @override
-  Widget build(BuildContext context) {
-    final apiDataProvinder = ref.watch(dataProvinder.);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final apiDataProvinder = ref.watch(getScreenProvider);
     return apiDataProvinder.when(
       data: ((data) {
         return ListView.separated(
           separatorBuilder: (BuildContext context, int index) =>
               const Divider(),
           padding: EdgeInsets.all(8),
-          itemCount: data.data.length,
+          itemCount: data.length,
           itemBuilder: (
             context,
             int moeda,
@@ -39,25 +31,35 @@ class _ListViewAPPState extends ConsumerState<ListViewAPP> {
                     context,
                     MaterialPageRoute(
                         builder: (context) => SubPageDetalhes(
-                              nome: data.data[moeda].name,
-                              porcento: widget.listOn[moeda].porcento,
-                              preco: widget.listOn[moeda].preco,
-                              title: widget.listOn[moeda].nome,
-                              valorMaximo:
-                                  widget.listOn[moeda].valorMaximo.toString(),
-                              valorMinimo:
-                                  widget.listOn[moeda].valorMinimo.toString(),
+                              nome: data[moeda].name,
+                              porcento: double.parse(data
+                                  .map((e) => e.metrics.marketData
+                                      .percent_change_usd_last_1_hour)
+                                  .toString()),
+                              preco: double.parse(data
+                                  .map((e) => e..metrics.marketData.price_usd)
+                                  .toString()),
+                              title: data.map((e) => e.symbol).toString(),
+                              valorMaximo: data
+                                  .map((e) => e.metrics.marketData.ohlcv.close)
+                                  .toString(),
+                              valorMinimo: data
+                                  .map((e) => e.metrics.marketData.ohlcv.open)
+                                  .toString(),
                             )));
               },
               leading: CircleAvatar(
-                  backgroundImage: AssetImage(data.data[moeda].name)),
-              subtitle: Text(data.data[moeda].name),
+                  backgroundImage: AssetImage(Colors.black.toString())),
+              subtitle: Text(data.map((e) => e.name).toString()),
               trailing: SizedBox(
                 width: 75,
                 height: 45,
                 child: Column(
                   children: [
-                    Text("R\$" + widget.listOn[moeda].preco.toString()),
+                    Text("R\$" +
+                        data
+                            .map((e) => e..metrics.marketData.price_usd)
+                            .toString()),
                     Padding(
                       padding: EdgeInsets.fromLTRB(25, 5, 0, 0),
                       child: Container(
@@ -66,11 +68,19 @@ class _ListViewAPPState extends ConsumerState<ListViewAPP> {
                         decoration: BoxDecoration(
                           border: Border.all(
                               width: 1,
-                              color: widget.listOn[moeda].porcento > 1
+                              color: double.parse(data
+                                          .map((e) => e.metrics.marketData
+                                              .percent_change_usd_last_1_hour)
+                                          .toString()) >
+                                      1
                                   ? Color.fromARGB(131, 191, 255, 119)
                                   : Color.fromARGB(131, 255, 119, 119)),
                           borderRadius: BorderRadius.all(Radius.circular(30)),
-                          color: widget.listOn[moeda].porcento > 1
+                          color: double.parse(data
+                                      .map((e) => e.metrics.marketData
+                                          .percent_change_usd_last_1_hour)
+                                      .toString()) >
+                                  1
                               ? Color.fromARGB(131, 191, 255, 119)
                               : Color.fromARGB(131, 255, 119, 119),
                         ),
@@ -78,7 +88,10 @@ class _ListViewAPPState extends ConsumerState<ListViewAPP> {
                           padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
                           child: Text(
                             "+" +
-                                widget.listOn[moeda].porcento.toString() +
+                                data
+                                    .map((e) => e.metrics.marketData
+                                        .percent_change_usd_last_1_hour)
+                                    .toString() +
                                 '\%',
                             style: TextStyle(fontSize: 10),
                             textAlign: TextAlign.center,
@@ -89,7 +102,7 @@ class _ListViewAPPState extends ConsumerState<ListViewAPP> {
                   ],
                 ),
               ),
-              title: Text(data.data[moeda].symbol),
+              title: Text(data.map((e) => e.symbol).toString()),
             );
           },
         );

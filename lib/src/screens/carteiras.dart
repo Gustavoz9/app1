@@ -1,7 +1,7 @@
+import 'package:app1/shared/widgets/listView.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 
-import '../../shared/widgets/listView.dart';
 import '../../shared/widgets/visibility.dart';
 import '../repositorio/repositorioMoedas.dart';
 
@@ -119,7 +119,7 @@ class MyCarteiraState extends ConsumerState<MyCarteira> {
                   width: MediaQuery.of(context).size.width,
                   height: 530,
                   color: const Color.fromARGB(0, 255, 193, 7),
-                  child: ListViewAPP(listOn: repoMoedas),
+                  child: const ListViewApp(),
                 ),
               )
             ])));

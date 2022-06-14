@@ -1,17 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'models/data_crypto_response.dart';
+part of 'data_crypto_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-DataModel _$DataModelFromJson(Map<String, dynamic> json) => DataModel(
+GetDataResponse _$GetDataResponseFromJson(Map<String, dynamic> json) =>
+    GetDataResponse(
       (json['data'] as List<dynamic>)
           .map((e) => BaseDataModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      json['metrics'] as List<MetricsModel>,
     );
 
-Map<String, dynamic> _$DataModelToJson(DataModel instance) => <String, dynamic>{
+Map<String, dynamic> _$GetDataResponseToJson(GetDataResponse instance) =>
+    <String, dynamic>{
       'data': instance.data,
+      'metrics': instance.metrics,
     };
