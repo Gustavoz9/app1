@@ -9,10 +9,10 @@ import '../../../shared/widgets/stack.dart';
 class SubPageDetalhes extends StatefulWidget {
   final String title;
   final String nome;
-  final double preco;
-  final double porcento;
-  final String valorMinimo;
-  final String valorMaximo;
+  final num preco;
+  final num porcento;
+  final num valorMinimo;
+  final num valorMaximo;
 
   const SubPageDetalhes({
     Key? key,
@@ -187,7 +187,7 @@ class _SubPageDetalhesState extends State<SubPageDetalhes> {
               texto: AppLocalizations.of(context)!.minvalor,
               complemento: Padding(
                 padding: const EdgeInsets.fromLTRB(160, 15, 0, 0),
-                child: Text(' R\$ ' + widget.valorMinimo,
+                child: Text(' R\$ ' + widget.valorMinimo.toString(),
                     textAlign: TextAlign.end,
                     style: const TextStyle(
                       fontSize: 20,
@@ -199,7 +199,7 @@ class _SubPageDetalhesState extends State<SubPageDetalhes> {
               texto: AppLocalizations.of(context)!.maxvalor,
               complemento: Padding(
                 padding: const EdgeInsets.fromLTRB(165, 15, 0, 0),
-                child: Text('R\$ ' + widget.valorMaximo,
+                child: Text('R\$ ' + widget.valorMaximo.toString(),
                     textAlign: TextAlign.end,
                     style: const TextStyle(
                       fontSize: 20,

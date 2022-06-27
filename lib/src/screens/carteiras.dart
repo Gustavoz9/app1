@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
 
 import '../../shared/widgets/visibility.dart';
+import '../api/screen_providers/allScreen_providers.dart';
 import '../repositorio/repositorioMoedas.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -20,8 +21,6 @@ class MyCarteira extends ConsumerStatefulWidget {
 }
 
 class MyCarteiraState extends ConsumerState<MyCarteira> {
-  double valorCarteira = 10000;
-
   LocalStorage storage = LocalStorage('valor');
   bool show = true;
 
@@ -34,7 +33,7 @@ class MyCarteiraState extends ConsumerState<MyCarteira> {
   @override
   initState() {
     super.initState();
-    storage.setItem('valor', 10000);
+    storage.setItem('valor', 1000000);
   }
 
   setStateValor(double valor) {
@@ -45,6 +44,7 @@ class MyCarteiraState extends ConsumerState<MyCarteira> {
 
   @override
   Widget build(BuildContext context) {
+    final apiDataProvinder = ref.watch(getScreenProvider);
     return Scaffold(
         body: Container(
             width: MediaQuery.of(context).size.width,
@@ -102,7 +102,7 @@ class MyCarteiraState extends ConsumerState<MyCarteira> {
                                       Radius.circular(20)),
                                 )),
                       ),
-                      const Positioned(
+                      Positioned(
                           top: 85,
                           left: 25,
                           child: Text('+R\$ 100,00 (100% do CDI)',
@@ -124,8 +124,4 @@ class MyCarteiraState extends ConsumerState<MyCarteira> {
               )
             ])));
   }
-
-  ErrorScreen() {}
-
-  LoadingScreen() {}
 }

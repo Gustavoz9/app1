@@ -6,9 +6,9 @@ part 'metricsModel.g.dart';
 
 @JsonSerializable()
 class MetricsModel {
-  final MarketDataModel marketData;
+  final MarketDataModel market_data;
 
-  MetricsModel({required this.marketData});
+  MetricsModel({required this.market_data});
   factory MetricsModel.fromJson(Map<String, dynamic> json) =>
       _$MetricsModelFromJson(json);
 

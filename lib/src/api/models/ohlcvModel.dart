@@ -4,11 +4,11 @@ part 'ohlcvModel.g.dart';
 
 @JsonSerializable()
 class OhlcvModel {
-  final double open;
-  final double high;
-  final double low;
-  final double close;
-  final double volume;
+  final num open;
+  final num high;
+  final num low;
+  final num close;
+  final num volume;
 
   OhlcvModel(
       {required this.open,

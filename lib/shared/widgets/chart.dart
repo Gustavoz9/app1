@@ -7,8 +7,8 @@ import 'inkWell.dart';
 
 class ChartAPP extends StatefulWidget {
   // final List<
-  final double porcento;
-  final double valor;
+  final num porcento;
+  final num valor;
   final Function(int) stateButton;
   final Function(bool) stateChart;
   final num onTapSwitchButton;

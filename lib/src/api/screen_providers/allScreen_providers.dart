@@ -1,6 +1,4 @@
-
-import 'package:app1/src/api/endPoint/endPoint_provider.dart';
-
+import 'package:app1/src/api/endPoint/end_point_provider.dart';
 
 import 'package:app1/src/api/userCase/crypto_userCase.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,12 +9,9 @@ import '../viewData/cryptoData_viewData.dart';
 
 final getScreenUseCase = Provider((ref) {
   return getCryptoDataUserCase(
-      dataRepository: ref.read(CryptoDataRepositoryProvider)
-      );
+      dataRepository: ref.read(CryptoDataRepositoryProvider));
 });
 
 final getScreenProvider = FutureProvider<List<CryptoDataViewData>>((ref) async {
-  return ref
-      .read(getScreenUseCase)
-      .execute();
+  return ref.read(getScreenUseCase).execute();
 });

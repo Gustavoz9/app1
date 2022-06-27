@@ -8,9 +8,8 @@ part 'data_crypto_response.g.dart';
 @JsonSerializable()
 class GetDataResponse {
   final List<BaseDataModel> data;
-  final List<MetricsModel> metrics;
 
-  GetDataResponse(this.data, this.metrics);
+  GetDataResponse(this.data);
 
   factory GetDataResponse.fromJson(Map<String, dynamic> json) =>
       _$GetDataResponseFromJson(json);

@@ -7,11 +7,11 @@ part of 'ohlcvModel.dart';
 // **************************************************************************
 
 OhlcvModel _$OhlcvModelFromJson(Map<String, dynamic> json) => OhlcvModel(
-      open: (json['open'] as num).toDouble(),
-      high: (json['high'] as num).toDouble(),
-      low: (json['low'] as num).toDouble(),
-      close: (json['close'] as num).toDouble(),
-      volume: (json['volume'] as num).toDouble(),
+      open: json['open'] as num,
+      high: json['high'] as num,
+      low: json['low'] as num,
+      close: json['close'] as num,
+      volume: json['volume'] as num,
     );
 
 Map<String, dynamic> _$OhlcvModelToJson(OhlcvModel instance) =>

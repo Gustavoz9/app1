@@ -48,8 +48,8 @@
     "selectquantityvalue": "select quantity value",
     "@selectquantityvalue":{"description": "select quantity value"},
 
-    "in": "in",
-    "@in":{"description":"in"},
+    "inText": "in",
+    "@inText":{"description":"in"},
 
     "cancel": "Cancel",
     "@cancel":{"description": "cancel convertion"}

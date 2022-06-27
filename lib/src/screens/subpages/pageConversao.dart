@@ -12,7 +12,7 @@ import '../carteiras.dart';
 class SubPageConversao extends StatefulWidget {
   final String name;
 
-  final double valor;
+  final num valor;
 
   const SubPageConversao({
     Key? key,

@@ -1,11 +1,10 @@
-import 'dart:ffi';
+import 'dart:math';
 
 import 'package:app1/src/api/screen_providers/allScreen_providers.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../src/api/endPoint/endPoint_provider.dart';
 import '../../src/screens/subpages/pageDetalhes.dart';
 
 class ListViewApp extends ConsumerWidget {
@@ -25,94 +24,91 @@ class ListViewApp extends ConsumerWidget {
             context,
             int moeda,
           ) {
-            return ListTile(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SubPageDetalhes(
-                              nome: data[moeda].name,
-                              porcento: double.parse(data
-                                  .map((e) => e.metrics.marketData
-                                      .percent_change_usd_last_1_hour)
-                                  .toString()),
-                              preco: double.parse(data
-                                  .map((e) => e..metrics.marketData.price_usd)
-                                  .toString()),
-                              title: data.map((e) => e.symbol).toString(),
-                              valorMaximo: data
-                                  .map((e) => e.metrics.marketData.ohlcv.close)
-                                  .toString(),
-                              valorMinimo: data
-                                  .map((e) => e.metrics.marketData.ohlcv.open)
-                                  .toString(),
-                            )));
-              },
-              leading: CircleAvatar(
-                  backgroundImage: AssetImage(Colors.black.toString())),
-              subtitle: Text(data.map((e) => e.name).toString()),
-              trailing: SizedBox(
-                width: 75,
-                height: 45,
-                child: Column(
-                  children: [
-                    Text("R\$" +
-                        data
-                            .map((e) => e..metrics.marketData.price_usd)
-                            .toString()),
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(25, 5, 0, 0),
-                      child: Container(
-                        width: 45,
-                        height: 20,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              width: 1,
-                              color: double.parse(data
-                                          .map((e) => e.metrics.marketData
-                                              .percent_change_usd_last_1_hour)
-                                          .toString()) >
-                                      1
-                                  ? Color.fromARGB(131, 191, 255, 119)
-                                  : Color.fromARGB(131, 255, 119, 119)),
-                          borderRadius: BorderRadius.all(Radius.circular(30)),
-                          color: double.parse(data
-                                      .map((e) => e.metrics.marketData
-                                          .percent_change_usd_last_1_hour)
-                                      .toString()) >
-                                  1
-                              ? Color.fromARGB(131, 191, 255, 119)
-                              : Color.fromARGB(131, 255, 119, 119),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
-                          child: Text(
-                            "+" +
-                                data
-                                    .map((e) => e.metrics.marketData
-                                        .percent_change_usd_last_1_hour)
-                                    .toString() +
-                                '\%',
-                            style: TextStyle(fontSize: 10),
-                            textAlign: TextAlign.center,
+            return Column(
+                children: data
+                    .map((e) => ListTile(
+                          leading: CircleAvatar(
+                              backgroundImage:
+                                  AssetImage(Colors.black.toString())),
+                          subtitle: Text(e.name),
+                          trailing: SizedBox(
+                            width: 75,
+                            height: 45,
+                            child: Column(children: [
+                              Text("R\$" +
+                                  e.metrics.market_data.price_usd.toString()),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(25, 5, 0, 0),
+                                child: Container(
+                                  width: 45,
+                                  height: 20,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        width: 1,
+                                        color: double.parse(e
+                                                    .metrics
+                                                    .market_data
+                                                    .percent_change_usd_last_1_hour
+                                                    .toString()) >
+                                                1
+                                            ? Color.fromARGB(131, 191, 255, 119)
+                                            : Color.fromARGB(
+                                                131, 255, 119, 119)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(30)),
+                                    color: double.parse(e.metrics.market_data
+                                                .percent_change_usd_last_1_hour
+                                                .toString()) >
+                                            1
+                                        ? Color.fromARGB(131, 191, 255, 119)
+                                        : Color.fromARGB(131, 255, 119, 119),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
+                                    child: Text(
+                                      "+" +
+                                          e.metrics.market_data
+                                              .percent_change_usd_last_1_hour
+                                              .toString() +
+                                          '\%',
+                                      style: TextStyle(fontSize: 10),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ]),
                           ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              title: Text(data.map((e) => e.symbol).toString()),
-            );
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SubPageDetalhes(
+                                  nome: e.name,
+                                  porcento: e.metrics.market_data
+                                      .percent_change_usd_last_1_hour,
+                                  preco: e.metrics.market_data.price_usd,
+                                  title: e.symbol,
+                                  valorMaximo: e.metrics.market_data
+                                      .ohlcv_last_1_hour.close,
+                                  valorMinimo: e.metrics.market_data
+                                      .ohlcv_last_1_hour.open,
+                                ),
+                              ),
+                            );
+                          },
+                          title: Text(e.name),
+                        ))
+                    .toList());
           },
         );
       }),
-      error: error(),
-      loading: loading(),
+      error: (Object error, StackTrace? stackTrace) {
+        return const Text('Ops! Algo está errado!');
+      },
+      loading: () {
+        return const CircularProgressIndicator();
+      },
     );
   }
-
-  loading() {}
-
-  error() {}
 }

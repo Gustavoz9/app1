@@ -1,8 +1,8 @@
-import '../endPoint/cryptoData_endPoint_provider.dart';
+import '../endPoint/end_point.dart';
 import '../models/data_crypto_response.dart';
 
 class DataRepository {
-  final CryptoDataEndPointProvinder dataEndpoint;
+  final EndPoint dataEndpoint;
 
   DataRepository({required this.dataEndpoint});
 

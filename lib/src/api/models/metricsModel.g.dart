@@ -7,11 +7,11 @@ part of 'metricsModel.dart';
 // **************************************************************************
 
 MetricsModel _$MetricsModelFromJson(Map<String, dynamic> json) => MetricsModel(
-      marketData:
-          MarketDataModel.fromJson(json['marketData'] as Map<String, dynamic>),
+      market_data:
+          MarketDataModel.fromJson(json['market_data'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MetricsModelToJson(MetricsModel instance) =>
     <String, dynamic>{
-      'marketData': instance.marketData,
+      'market_data': instance.market_data,
     };
