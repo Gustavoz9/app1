@@ -4,6 +4,7 @@ import 'package:app1/src/api/screen_providers/allScreen_providers.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 import '../../src/screens/subpages/pageDetalhes.dart';
 
@@ -12,6 +13,12 @@ class ListViewApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    format(num num, String casas) {
+      NumberFormat format = NumberFormat(casas, "en_US".toString());
+      return format.format(num);
+    }
+
+    ;
     final apiDataProvinder = ref.watch(getScreenProvider);
     return apiDataProvinder.when(
       data: ((data) {
@@ -19,7 +26,7 @@ class ListViewApp extends ConsumerWidget {
           separatorBuilder: (BuildContext context, int index) =>
               const Divider(),
           padding: EdgeInsets.all(8),
-          itemCount: data.length,
+          itemCount: 1,
           itemBuilder: (
             context,
             int moeda,
@@ -32,11 +39,15 @@ class ListViewApp extends ConsumerWidget {
                                   AssetImage(Colors.black.toString())),
                           subtitle: Text(e.name),
                           trailing: SizedBox(
-                            width: 75,
+                            width: 100,
                             height: 45,
                             child: Column(children: [
-                              Text("R\$" +
-                                  e.metrics.market_data.price_usd.toString()),
+                              Text(
+                                  "R\$ " +
+                                      format(e.metrics.market_data.price_usd,
+                                              "###.##")
+                                          .toString(),
+                                  style: TextStyle(fontSize: 15)),
                               Padding(
                                 padding: EdgeInsets.fromLTRB(25, 5, 0, 0),
                                 child: Container(
@@ -67,8 +78,10 @@ class ListViewApp extends ConsumerWidget {
                                     padding: EdgeInsets.fromLTRB(0, 3, 0, 0),
                                     child: Text(
                                       "+" +
-                                          e.metrics.market_data
-                                              .percent_change_usd_last_1_hour
+                                          format(
+                                                  e.metrics.market_data
+                                                      .percent_change_usd_last_1_hour,
+                                                  "###.###")
                                               .toString() +
                                           '\%',
                                       style: TextStyle(fontSize: 10),
