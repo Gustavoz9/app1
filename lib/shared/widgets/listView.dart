@@ -18,7 +18,6 @@ class ListViewApp extends ConsumerWidget {
       return format.format(num);
     }
 
-    ;
     final apiDataProvinder = ref.watch(getScreenProvider);
     return apiDataProvinder.when(
       data: ((data) {
@@ -98,9 +97,12 @@ class ListViewApp extends ConsumerWidget {
                               MaterialPageRoute(
                                 builder: (context) => SubPageDetalhes(
                                   nome: e.name,
-                                  porcento: e.metrics.market_data
-                                      .percent_change_usd_last_1_hour,
-                                  preco: e.metrics.market_data.price_usd,
+                                  porcento: double.parse(e.metrics.market_data
+                                      .percent_change_usd_last_1_hour
+                                      .toString()),
+                                  preco: double.parse(format(
+                                      e.metrics.market_data.price_usd,
+                                      "###.##")),
                                   title: e.symbol,
                                   valorMaximo: e.metrics.market_data
                                       .ohlcv_last_1_hour.close,
