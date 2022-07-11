@@ -105,9 +105,9 @@ class ListViewApp extends ConsumerWidget {
                                       "###.##")),
                                   title: e.symbol,
                                   valorMaximo: e.metrics.market_data
-                                      .ohlcv_last_1_hour.close,
+                                      .ohlcv_last_1_hour.low,
                                   valorMinimo: e.metrics.market_data
-                                      .ohlcv_last_1_hour.open,
+                                      .ohlcv_last_1_hour.higth,
                                 ),
                               ),
                             );
@@ -119,6 +119,7 @@ class ListViewApp extends ConsumerWidget {
         );
       }),
       error: (Object error, StackTrace? stackTrace) {
+        print(error.toString());
         return const Text('Ops! Algo está errado!');
       },
       loading: () {

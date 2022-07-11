@@ -7,18 +7,12 @@ part of 'ohlcvModel.dart';
 // **************************************************************************
 
 OhlcvModel _$OhlcvModelFromJson(Map<String, dynamic> json) => OhlcvModel(
-      open: json['open'] as num,
-      high: json['high'] as num,
+      higth: json['higth'] as num,
       low: json['low'] as num,
-      close: json['close'] as num,
-      volume: json['volume'] as num,
     );
 
 Map<String, dynamic> _$OhlcvModelToJson(OhlcvModel instance) =>
     <String, dynamic>{
-      'open': instance.open,
-      'high': instance.high,
+      'higth': instance.higth,
       'low': instance.low,
-      'close': instance.close,
-      'volume': instance.volume,
     };

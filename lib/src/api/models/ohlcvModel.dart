@@ -4,18 +4,13 @@ part 'ohlcvModel.g.dart';
 
 @JsonSerializable()
 class OhlcvModel {
-  final num open;
-  final num high;
+  final num higth;
   final num low;
-  final num close;
-  final num volume;
 
-  OhlcvModel(
-      {required this.open,
-      required this.high,
-      required this.low,
-      required this.close,
-      required this.volume});
+  OhlcvModel({
+    required this.higth,
+    required this.low,
+  });
 
   factory OhlcvModel.fromJson(Map<String, dynamic> json) =>
       _$OhlcvModelFromJson(json);
