@@ -1,7 +1,6 @@
+import 'package:app1/src/models/repositorio/repositorioMovimenta.dart';
+import 'package:app1/src/widgets/listViewWithChart.dart';
 import 'package:flutter/material.dart';
-
-import '../../shared/widgets/listViewWithChart.dart';
-import '../repositorio/repositorioMovimenta.dart';
 
 class MyMoviment extends StatefulWidget {
   const MyMoviment({Key? key}) : super(key: key);

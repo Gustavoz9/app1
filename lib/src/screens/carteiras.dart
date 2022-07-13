@@ -1,14 +1,14 @@
-import 'package:app1/shared/widgets/listView.dart';
+import 'package:app1/src/widgets/visibility.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
-
-import '../../shared/widgets/visibility.dart';
-import '../api/screen_providers/allScreen_providers.dart';
-import '../repositorio/repositorioMoedas.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import '../../shared/models/repositorio/repositorioMoedas.dart';
+
+import '../widgets/listView.dart';
 
 final pageViewController = PageController();
 final repoMoedas = MoedaRepository.tabela;
@@ -44,7 +44,6 @@ class MyCarteiraState extends ConsumerState<MyCarteira> {
 
   @override
   Widget build(BuildContext context) {
-    final apiDataProvinder = ref.watch(getScreenProvider);
     return Scaffold(
         body: Container(
             width: MediaQuery.of(context).size.width,
