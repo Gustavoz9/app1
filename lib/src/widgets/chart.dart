@@ -1,8 +1,11 @@
 import 'package:app1/shared/api/models/responses/getAll_response.dart';
 import 'package:app1/shared/api/screen_providers/allScreen_providers.dart';
+import 'package:app1/shared/api/viewData/getAll_viewData.dart';
+import 'package:app1/shared/api/viewData/value_viewData.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import 'inkWell.dart';
@@ -15,8 +18,11 @@ class ChartAPP extends ConsumerStatefulWidget {
   final num onTapSwitchButton;
   final bool onTapSwitchChart;
 
+  final List chartsData;
+
   const ChartAPP({
     Key? key,
+    required this.chartsData,
     required this.valor,
     required this.porcento,
     required this.stateButton,
@@ -29,13 +35,48 @@ class ChartAPP extends ConsumerStatefulWidget {
   ConsumerState<ChartAPP> createState() => _ChartAPPState();
 }
 
+format(num num, String casas) {
+  NumberFormat format = NumberFormat(casas, "en_US".toString());
+  return format.format(num);
+}
+
 class _ChartAPPState extends ConsumerState<ChartAPP> {
   @override
   Widget build(BuildContext context) {
-    final values = ref.watch(getScreenDayValueProvider);
-    // values.mapOrNull().toList().whenOrNull(
-    //   data: ((item) => );
-    // );
+    // adicionar os valores //
+    List<dynamic> chartsData = widget.chartsData;
+    num currentDay = 0;
+    num daysLenght = widget.onTapSwitchButton;
+
+    List<dynamic> chartsValues(num daysLenght) {
+      final List<dynamic> values = [];
+      for (int i = 0; i < daysLenght; ++i) {
+        values.add([chartsData[0].btc_timeseries[i][1], currentDay + 1]);
+        currentDay += daysLenght;
+      }
+      return values;
+    }
+
+    chartsData = chartsValues(daysLenght);
+
+    // aplicar no grafico //
+    List<LineSeries<dynamic, double>> lineseries = [
+      LineSeries(
+        dataSource: chartsData,
+        xValueMapper: (dynamic lineseries, _) => lineseries[1],
+        yValueMapper: (dynamic lineseries, _) => lineseries[0],
+      )
+    ];
+    List<ColumnSeries<dynamic, double>> barseries = [
+      ColumnSeries(
+        dataSource: chartsData,
+        xValueMapper: (dynamic barseries, _) => barseries[1],
+        yValueMapper: (dynamic barseries, _) => barseries[0],
+      )
+    ];
+
+    // -------------------------------- //
+
     return Container(
       decoration: BoxDecoration(
         border: Border.all(width: 1, color: Colors.black),
@@ -52,92 +93,22 @@ class _ChartAPPState extends ConsumerState<ChartAPP> {
             ),
           ),
           Center(
-              child: widget.onTapSwitchChart == true
-                  ? Container(
-                      width: 300,
-                      height: 170,
-                      child: widget.porcento > 1
-                          ? SfCartesianChart(series: <ChartSeries>[
-                              // Renders line chart
-                              ColumnSeries<GetAllResponses, double>(
-                                  dataSource: values.mapOrNull().toList(),
-                                  xValueMapper: (GetAllResponses data, _) =>
-                                      double.parse(1.toString()),
-                                  yValueMapper: (GetAllResponses data, _) =>
-                                      double.parse(1.toString())),
-
-                              ColumnSeries<GetAllResponses, double>(
-                                  dataSource: values.mapOrNull().toList(),
-                                  dashArray: <double>[5, 5],
-                                  xValueMapper: (GetAllResponses data, _) =>
-                                      double.parse(1.toString()),
-                                  yValueMapper: (GetAllResponses data, _) =>
-                                      double.parse(1.toString())),
-                            ])
-                          : SfCartesianChart(series: <ChartSeries>[
-                              // Renders line chart
-                              ColumnSeries<GetAllResponses, double>(
-                                  dataSource: values.mapOrNull().toList(),
-                                  xValueMapper: (GetAllResponses data, _) =>
-                                      double.parse(1.toString()),
-                                  yValueMapper: (GetAllResponses data, _) =>
-                                      double.parse(1.toString())),
-
-                              ColumnSeries<GetAllResponses, double>(
-                                  dataSource: values.mapOrNull().toList(),
-                                  dashArray: <double>[
-                                    5 *
-                                        widget.onTapSwitchButton
-                                            .toInt()
-                                            .toDouble(),
-                                    5 *
-                                        widget.onTapSwitchButton
-                                            .toInt()
-                                            .toDouble()
-                                  ],
-                                  xValueMapper: (GetAllResponses data, _) =>
-                                      double.parse(1.toString()),
-                                  yValueMapper: (GetAllResponses data, _) =>
-                                      double.parse(1.toString())),
-                            ]))
-                  : Container(
-                      width: 300,
-                      height: 170,
-                      child: widget.porcento > 1
-                          ? SfCartesianChart(series: <ChartSeries>[
-                              // Renders line chart
-                              LineSeries<GetAllResponses, double>(
-                                  dataSource: values.mapOrNull().toList(),
-                                  xValueMapper: (GetAllResponses data, _) =>
-                                      double.parse(1.toString()),
-                                  yValueMapper: (GetAllResponses data, _) =>
-                                      double.parse(1.toString())),
-
-                              LineSeries<GetAllResponses, double>(
-                                  dataSource: values.mapOrNull().toList(),
-                                  dashArray: <double>[5, 5],
-                                  xValueMapper: (GetAllResponses data, _) =>
-                                      double.parse(1.toString()),
-                                  yValueMapper: (GetAllResponses data, _) =>
-                                      double.parse(1.toString())),
-                            ])
-                          : SfCartesianChart(series: <ChartSeries>[
-                              // Renders line chart
-                              LineSeries<GetAllResponses, double>(
-                                  dataSource: values.mapOrNull().toList(),
-                                  xValueMapper: (GetAllResponses data, _) =>
-                                      double.parse(1.toString()),
-                                  yValueMapper: (GetAllResponses data, _) =>
-                                      double.parse(1.toString())),
-
-                              LineSeries<GetAllResponses, double>(
-                                  dataSource: values.mapOrNull().toList(),
-                                  dashArray: <double>[5, 5],
-                                  xValueMapper: (GetAllResponses data, _) =>
-                                      double.parse(1.toString()),
-                                  yValueMapper: (GetAllResponses data, _) =>
-                                      double.parse(1.toString())),
-                            ]))),
+            child: widget.onTapSwitchChart == true
+                ? Container(
+                    width: 300,
+                    height: 170,
+                    child: widget.porcento > 1
+                        ? SfCartesianChart(series: barseries)
+                        : SfCartesianChart(series: barseries),
+                  )
+                : Container(
+                    width: 300,
+                    height: 170,
+                    child: widget.porcento > 1
+                        ? SfCartesianChart(series: lineseries)
+                        : SfCartesianChart(series: lineseries),
+                  ),
+          ),
           Divider(
             height: 1,
             thickness: 1,
@@ -156,7 +127,7 @@ class _ChartAPPState extends ConsumerState<ChartAPP> {
                     radiusBorder: 5,
                     casePosition: 1,
                     state: () {
-                      widget.stateButton(1);
+                      widget.stateButton(5);
                     },
                     buttonDayOnTap: widget.onTapSwitchButton.toInt(),
                     text: '5D',
@@ -166,7 +137,7 @@ class _ChartAPPState extends ConsumerState<ChartAPP> {
                     radiusBorder: 5,
                     casePosition: 2,
                     state: () {
-                      widget.stateButton(2);
+                      widget.stateButton(10);
                     },
                     buttonDayOnTap: widget.onTapSwitchButton.toInt(),
                     text: '10D',
@@ -176,7 +147,7 @@ class _ChartAPPState extends ConsumerState<ChartAPP> {
                     radiusBorder: 5,
                     casePosition: 3,
                     state: () {
-                      widget.stateButton(3);
+                      widget.stateButton(15);
                     },
                     buttonDayOnTap: widget.onTapSwitchButton.toInt(),
                     text: '15D',
@@ -186,7 +157,7 @@ class _ChartAPPState extends ConsumerState<ChartAPP> {
                     radiusBorder: 5,
                     casePosition: 4,
                     state: () {
-                      widget.stateButton(4);
+                      widget.stateButton(20);
                     },
                     buttonDayOnTap: widget.onTapSwitchButton.toInt(),
                     text: '20D',
