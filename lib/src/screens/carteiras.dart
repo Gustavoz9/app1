@@ -1,3 +1,7 @@
+import 'package:app1/shared/api/screen_providers/allScreen_providers.dart';
+import 'package:app1/shared/api/viewData/value_viewData.dart';
+import 'package:app1/src/models/repositorio/repositorioMoedas.dart';
+import 'package:app1/src/widgets/chart.dart';
 import 'package:app1/src/widgets/visibility.dart';
 import 'package:flutter/material.dart';
 import 'package:localstorage/localstorage.dart';
@@ -5,8 +9,6 @@ import 'package:localstorage/localstorage.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../shared/models/repositorio/repositorioMoedas.dart';
 
 import '../widgets/listView.dart';
 
@@ -104,7 +106,7 @@ class MyCarteiraState extends ConsumerState<MyCarteira> {
                       Positioned(
                           top: 85,
                           left: 25,
-                          child: Text('+R\$ 100,00 (100% do CDI)',
+                          child: Text('+R\$ 100,00 (100% do CDI) + ',
                               style: TextStyle(
                                   fontSize: 15, color: Colors.black45))),
                     ],

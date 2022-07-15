@@ -14,6 +14,7 @@ final getScreenUseCase = Provider((ref) {
 final getScreenDataProvider = FutureProvider<List<DataViewData>>((ref) async {
   return ref.read(getScreenUseCase).executeData();
 });
+
 final getScreenDayValueProvider =
     FutureProvider<List<ValueViewData>>((ref) async {
   return ref.read(getScreenUseCase).executeValue();

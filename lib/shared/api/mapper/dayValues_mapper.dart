@@ -7,7 +7,7 @@ extension CryptoValueMapper on GetAllResponses {
   List<ValueViewData> toViewValue() {
     return btc_timeseries
         .map((item) => ValueViewData(
-              values: item.btc_timeseries,
+              btc_timeseries: btc_timeseries,
             ))
         .toList();
   }

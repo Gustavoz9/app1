@@ -5,7 +5,7 @@ import 'package:app1/shared/api/viewData/data_viewData.dart';
 import 'package:app1/shared/api/viewData/value_viewData.dart';
 
 class getUsersCases {
-  final Repository dataRepository;
+  final ApiRepository dataRepository;
   getUsersCases({required this.dataRepository});
 
   Future<List<DataViewData>> executeData() async {

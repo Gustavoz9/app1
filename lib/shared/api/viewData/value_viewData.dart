@@ -1,5 +1,5 @@
 class ValueViewData {
-  final List<List<num>> values;
+  final List<List<double>> btc_timeseries;
 
-  ValueViewData({required this.values});
+  ValueViewData({required this.btc_timeseries});
 }

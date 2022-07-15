@@ -4,12 +4,13 @@ import 'package:json_annotation/json_annotation.dart';
 import 'data_response.dart';
 import 'metrics_response_data.dart';
 
-part '../pointG/getAll_response.g.dart';
+part 'getAll_response.g.dart';
 
 @JsonSerializable()
 class GetAllResponses {
   final List<BaseDataModel> data;
-  final List<GetValueResponse> btc_timeseries;
+  final List<List<double>> btc_timeseries;
+
   GetAllResponses(this.data, this.btc_timeseries);
 
   factory GetAllResponses.fromJson(Map<String, dynamic> json) =>

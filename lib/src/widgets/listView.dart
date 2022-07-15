@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:app1/shared/api/screen_providers/allScreen_providers.dart';
+import 'package:app1/shared/api/viewData/value_viewData.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,6 +20,17 @@ class ListViewApp extends ConsumerWidget {
     }
 
     final apiDataProvinder = ref.watch(getScreenDataProvider);
+    final values = ref.watch(getScreenDayValueProvider);
+
+    // integrar os dados //
+    List<dynamic> chartsData = [];
+    values.whenOrNull(
+      data: (data) {
+        return chartsData = data
+            .map((e) => ValueViewData(btc_timeseries: e.btc_timeseries))
+            .toList();
+      },
+    );
     return apiDataProvinder.when(
       data: ((data) {
         return ListView.separated(
@@ -108,6 +120,7 @@ class ListViewApp extends ConsumerWidget {
                                       .ohlcv_last_1_hour.low,
                                   valorMinimo: e.metrics.market_data
                                       .ohlcv_last_1_hour.higth,
+                                  chartsData: chartsData,
                                 ),
                               ),
                             );
@@ -120,7 +133,7 @@ class ListViewApp extends ConsumerWidget {
       }),
       error: (Object error, StackTrace? stackTrace) {
         print(error.toString());
-        return const Text('Ops! Algo está errado!');
+        return Text(error.toString());
       },
       loading: () {
         return const CircularProgressIndicator();

@@ -1,13 +1,16 @@
+import 'package:app1/shared/api/viewData/value_viewData.dart';
 import 'package:app1/src/screens/subpages/Conversao.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 
+import '../../../shared/api/screen_providers/allScreen_providers.dart';
 import '../../widgets/chart.dart';
 import '../../widgets/stack.dart';
 
-class SubPageDetalhes extends StatefulWidget {
+class SubPageDetalhes extends ConsumerStatefulWidget {
   final String title;
   final String nome;
   final num preco;
@@ -15,8 +18,11 @@ class SubPageDetalhes extends StatefulWidget {
   final num valorMinimo;
   final num valorMaximo;
 
+  final List chartsData;
+
   const SubPageDetalhes({
     Key? key,
+    required this.chartsData,
     required this.title,
     required this.nome,
     required this.valorMinimo,
@@ -26,7 +32,7 @@ class SubPageDetalhes extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<SubPageDetalhes> createState() => _SubPageDetalhesState();
+  ConsumerState<SubPageDetalhes> createState() => _SubPageDetalhesState();
 }
 
 class LinearSales {
@@ -36,8 +42,8 @@ class LinearSales {
   LinearSales(this.year, this.sales);
 }
 
-class _SubPageDetalhesState extends State<SubPageDetalhes> {
-  num onTapSwitchButton = 1;
+class _SubPageDetalhesState extends ConsumerState<SubPageDetalhes> {
+  num onTapSwitchButton = 5;
   bool onTapSwitchChart = false;
   final globalKey = GlobalKey<ScaffoldState>();
 
@@ -113,6 +119,7 @@ class _SubPageDetalhesState extends State<SubPageDetalhes> {
                   child: Column(
                     children: [
                       ChartAPP(
+                        chartsData: widget.chartsData,
                         porcento: widget.porcento,
                         valor: widget.preco,
                         stateChart: _onTapChangeChart,

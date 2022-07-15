@@ -5,5 +5,5 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../endPoint/end_point.dart';
 
 final RepositoryProvider = Provider((ref) {
-  return Repository(dataEndpoint: ref.read(EndPointProvider));
+  return ApiRepository(dataEndpoint: ref.read(EndPointProvider));
 });

@@ -3,7 +3,7 @@ part '../pointG/dayValues_response.g.dart';
 
 @JsonSerializable()
 class GetValueResponse {
-  final List<List<num>> btc_timeseries;
+  final List<List<double>> btc_timeseries;
 
   GetValueResponse(this.btc_timeseries);
   factory GetValueResponse.fromJson(Map<String, dynamic> json) =>

@@ -9,7 +9,8 @@ part of '../responses/dayValues_response.dart';
 GetValueResponse _$GetValueResponseFromJson(Map<String, dynamic> json) =>
     GetValueResponse(
       (json['btc_timeseries'] as List<dynamic>)
-          .map((e) => (e as List<dynamic>).map((e) => e as num).toList())
+          .map((e) =>
+              (e as List<dynamic>).map((e) => (e as num).toDouble()).toList())
           .toList(),
     );
 

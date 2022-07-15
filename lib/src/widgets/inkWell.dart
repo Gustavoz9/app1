@@ -35,7 +35,6 @@ class _InkWellAPPState extends State<InkWellAPP> {
             child: Center(
               child: Text(
                 widget.text,
-                style: TextStyle(),
               ),
             )),
         width: 30,

@@ -1,5 +1,5 @@
-import 'package:app1/shared/models/repositorio/repositorioMoedas.dart';
 import 'package:app1/src/models/modelMovimentaList.dart';
+import 'package:app1/src/models/repositorio/repositorioMoedas.dart';
 import 'package:app1/src/models/repositorio/repositorioMovimenta.dart';
 import 'package:app1/src/widgets/dropdownButtonApp.dart';
 import 'package:app1/src/widgets/inkWell.dart';
@@ -73,6 +73,7 @@ class _SubPageConversao extends State<SubPageConversao>
 
       carteira.setStateValor(checkCaseMath() + checkCoin());
     });
+    setState(() {});
   }
 
   AnimationController? animationController;

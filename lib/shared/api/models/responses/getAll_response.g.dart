@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of '../responses/getAll_response.dart';
+part of 'getAll_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -12,7 +12,8 @@ GetAllResponses _$GetAllResponsesFromJson(Map<String, dynamic> json) =>
           .map((e) => BaseDataModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       (json['btc_timeseries'] as List<dynamic>)
-          .map((e) => GetValueResponse.fromJson(e as Map<String, dynamic>))
+          .map((e) =>
+              (e as List<dynamic>).map((e) => (e as num).toDouble()).toList())
           .toList(),
     );
 

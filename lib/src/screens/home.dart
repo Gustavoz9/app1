@@ -1,15 +1,12 @@
+import 'package:app1/shared/api/screen_providers/allScreen_providers.dart';
+import 'package:app1/src/widgets/chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MyHome extends StatefulWidget {
+class MyHome extends ConsumerWidget {
   const MyHome({Key? key}) : super(key: key);
-
   @override
-  State<MyHome> createState() => _MyHomeState();
-}
-
-class _MyHomeState extends State<MyHome> {
-  @override
-  Widget build(BuildContext context) {
-    return Container();
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Text('');
   }
 }
