@@ -73,7 +73,6 @@ class _SubPageConversao extends State<SubPageConversao>
 
       carteira.setStateValor(checkCaseMath() + checkCoin());
     });
-    setState(() {});
   }
 
   AnimationController? animationController;

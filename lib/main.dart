@@ -10,7 +10,6 @@ import 'L10n/l10n.dart';
 
 void main() {
   runApp(ProviderScope(child: MyMain()));
-  // runApp(const MyMain());
 }
 
 class MyMain extends StatefulWidget {

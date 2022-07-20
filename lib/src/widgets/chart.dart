@@ -75,8 +75,6 @@ class _ChartAPPState extends ConsumerState<ChartAPP> {
       )
     ];
 
-    // -------------------------------- //
-
     return Container(
       decoration: BoxDecoration(
         border: Border.all(width: 1, color: Colors.black),

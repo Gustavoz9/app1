@@ -132,7 +132,6 @@ class ListViewApp extends ConsumerWidget {
         );
       }),
       error: (Object error, StackTrace? stackTrace) {
-        print(error.toString());
         return Text(error.toString());
       },
       loading: () {

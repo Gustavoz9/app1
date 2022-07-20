@@ -106,7 +106,7 @@ class MyCarteiraState extends ConsumerState<MyCarteira> {
                       Positioned(
                           top: 85,
                           left: 25,
-                          child: Text('+R\$ 100,00 (100% do CDI) + ',
+                          child: Text('+R\$ 100,00 (100% do CDI)',
                               style: TextStyle(
                                   fontSize: 15, color: Colors.black45))),
                     ],
